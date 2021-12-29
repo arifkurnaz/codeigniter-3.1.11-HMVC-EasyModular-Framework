@@ -41,13 +41,13 @@ Folder Structure Example
 
 
 modules
- -Home
-    -config
-    -controllers
-    -helpers
-    -libraries
-    -models
-    -views
+ /{modulname}
+    /config
+    /controllers
+    /helpers
+    /libraries
+    /models
+    /views
 
 Added new function for load view 
 
