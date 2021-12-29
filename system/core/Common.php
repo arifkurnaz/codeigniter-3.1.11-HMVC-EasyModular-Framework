@@ -874,8 +874,10 @@ if ( ! function_exists('function_usable'))
 
 		return FALSE;
 	}
+
 	 
 }
+
 if(!function_exists('scan_module_folders'))
 	 {
 		 function scan_module_folders($directory)
@@ -891,4 +893,6 @@ if(!function_exists('scan_module_folders'))
 			return $directories;
 		 }
 	 }
- 
+
+
+

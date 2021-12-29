@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Options -Indexes
 Options +FollowSymLinks
 DirectoryIndex index.php
@@ -23,4 +24,31 @@ RewriteRule ^/?(.*) https://%{SERVER_NAME}/$1 [R,L]
 
 <IfModule !mod_rewrite.c>   
     ErrorDocument 404 /index.php
+=======
+Options -Indexes
+Options +FollowSymLinks
+DirectoryIndex index.php
+
+RewriteEngine On
+RewriteCond %{HTTPS}  !=on
+RewriteRule ^/?(.*) https://%{SERVER_NAME}/$1 [R,L]
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /   
+    RewriteCond $1 !^(index\.php|assets/|css|js|robots\.txt|favicon\.ico)
+    RewriteCond $1 !^(index\.php|public|robots\.txt)   
+    RewriteCond $1 !^([^\..]+\.php|robots\.txt|sitemap\.xml)
+    RewriteCond %{REQUEST_URI} ^system.*
+    RewriteRule ^(.*)$ /index.php?/$1 [L]    
+    RewriteCond %{REQUEST_URI} ^application.*
+    RewriteRule ^(.*)$ /index.php?/$1 [L]
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index.php?/$1 [L]
+</IfModule>
+
+<IfModule !mod_rewrite.c>   
+    ErrorDocument 404 /index.php
+>>>>>>> 6f5fb90d5b0dcd3c3badbd365a6e365d33a947aa
 </IfModule>

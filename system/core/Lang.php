@@ -70,7 +70,9 @@ class CI_Lang {
 	public function __construct()
 	{
 		log_message('info', 'Language Class Initialized');
+
 		$this->config =& load_class('Config', 'core');
+
 
 	}
 
@@ -149,6 +151,7 @@ class CI_Lang {
 				}
 			}
 		}
+<<<<<<< HEAD
 		if($this->config->item('modules_enable'))
 		{
 			foreach (scan_module_folders() as $module)
@@ -161,6 +164,8 @@ class CI_Lang {
 				}
 			}
 		}
+=======
+>>>>>>> 6f5fb90d5b0dcd3c3badbd365a6e365d33a947aa
 
 		if ($found !== TRUE)
 		{
