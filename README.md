@@ -26,7 +26,7 @@ What is New ?
  */
 	$modules_folder = 'modules';
 
-  You can change  location modules folder 
+  You can change  location modules folder  changing in index.php
 
 in Application/config/config.php file have  config for use hmvc 
 
