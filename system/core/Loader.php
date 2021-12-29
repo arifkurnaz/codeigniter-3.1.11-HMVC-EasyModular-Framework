@@ -114,6 +114,7 @@ class CI_Loader {
 	 */
 	protected $_ci_helpers =	array();
 
+	protected $_ci_module_list=array();
 	/**
 	 * List of class name mappings
 	 *
@@ -142,6 +143,7 @@ class CI_Loader {
 		$this->config->_config_paths[]=str_replace('/','\\',MODULESPATH.$this->router->module.'/');
 		$this->config->load();
 	//	print_debug($this->config,false);
+	$this->_ci_module_list=scan_module_folders(MODULESPATH);
 		log_message('info', 'Loader Class Initialized');
 	}
 
@@ -329,10 +331,14 @@ class CI_Loader {
 		}
 
        
-
+		
 		if($this->config->item('modules_enable'))
 		{
-			$this->_ci_model_paths[]=str_replace('/','\\',MODULESPATH.$this->router->module.'/');
+			foreach ($this->_ci_module_list as  $module)
+			{
+				$this->_ci_model_paths[]=str_replace('/','\\',MODULESPATH.$module.'/');
+			}
+			
 		}
 	//	print_debug($this->_ci_model_paths,false);
 		$model = ucfirst($model);
@@ -629,7 +635,10 @@ class CI_Loader {
 
 		if($this->config->item('modules_enable'))
 		{
-			$this->_ci_helper_paths[]=str_replace('/','\\',MODULESPATH.$this->router->module.'/');
+			foreach ($this->_ci_module_list as $module) {
+				$this->_ci_helper_paths[]=str_replace('/','\\',MODULESPATH.$module.'/');
+			}
+			
 		}
 	//	print_debug($this->_ci_helper_paths,false);
 			foreach ($this->_ci_helper_paths as $path)
@@ -1120,7 +1129,11 @@ class CI_Loader {
 
 		if($this->config->item('modules_enable'))
 		{
-			$this->_ci_library_paths[]=str_replace('/','\\',MODULESPATH.$this->router->module.'/');
+			foreach ($this->_ci_module_list as  $module)
+			{
+				$this->_ci_library_paths[]=str_replace('/','\\',MODULESPATH.$module.'/');
+			}
+			
 		}
 		// Let's search for the requested library file and load it.
 		foreach ($this->_ci_library_paths as $path)

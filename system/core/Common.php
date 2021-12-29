@@ -874,4 +874,21 @@ if ( ! function_exists('function_usable'))
 
 		return FALSE;
 	}
+	 
 }
+if(!function_exists('scan_module_folders'))
+	 {
+		 function scan_module_folders($directory)
+		 {
+			 $list=scandir($directory);
+			foreach($list as $value)
+			{
+				if($value!='..' &&  $value!="." && !is_file($directory.'/'.$value) )
+				{
+				$directories[]=$value;
+				}
+			}
+			return $directories;
+		 }
+	 }
+ 
